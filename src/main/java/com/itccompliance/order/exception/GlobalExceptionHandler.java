@@ -1,6 +1,7 @@
 package com.itccompliance.order.exception;
 
 import com.itccompliance.order.model.ErrorResponse;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -24,6 +25,10 @@ public class GlobalExceptionHandler {
                 .stream().map(err -> err.getField() + ": " + err.getDefaultMessage())
                 .findFirst().orElse("Validation error");
         return buildErrorResponse(HttpStatus.BAD_REQUEST, "Validation Failed", message, request);
+    }
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalArgs(ConstraintViolationException ex, WebRequest request) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, "Bad Request", ex.getMessage(), request);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

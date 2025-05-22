@@ -56,4 +56,15 @@ public class ErrorResponse {
     public void setPath(String path) {
         this.path = path;
     }
+
+    @Override
+    public String toString() {
+        return "ErrorResponse{" +
+                "timestamp=" + timestamp +
+                ", status=" + status +
+                ", error='" + error + '\'' +
+                ", message='" + message + '\'' +
+                ", path='" + path + '\'' +
+                '}';
+    }
 }
