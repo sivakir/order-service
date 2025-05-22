@@ -21,6 +21,7 @@ public class OrderService {
         this.orderRepository = orderRepository;
         this.pdfGeneratorService = pdfGeneratorService;
     }
+
     public OrderDto createOrder(OrderDto dto) {
         logger.info("Creating new order for customer: {}", dto.customerName());
         Order saved = orderRepository.save(toEntity(dto));

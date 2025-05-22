@@ -2,6 +2,7 @@ package com.itccompliance.order.controller;
 
 import com.itccompliance.order.model.OrderDto;
 import com.itccompliance.order.service.OrderService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/orders")
+@SecurityRequirement(name = "bearerAuth")
 public class OrderController {
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
     private final OrderService orderService;
